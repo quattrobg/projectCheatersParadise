@@ -1,0 +1,36 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    
+    <ImageView
+        android:id="@+id/background"
+        android:background="@drawable/background"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+    </ImageView>    
+    
+    <LinearLayout
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:padding="20dip"
+	    android:orientation="vertical" >
+		<TextView
+		  	android:layout_width="fill_parent"
+		    android:layout_weight="0.9"
+		  	android:layout_height="wrap_content"
+		  	android:text="@string/about_app"
+			android:textSize="28sp"
+			android:textColor="#ffffff"
+	    	android:gravity="center_vertical|center_horizontal"	/>
+		<TextView
+		  	android:layout_width="fill_parent"
+		    android:layout_weight="0.1"
+		  	android:layout_height="wrap_content"
+		  	android:text="@string/app_rights"
+			android:textSize="14sp"
+			android:textColor="#ffffff"
+	    	android:gravity="bottom|center_horizontal" />
+	</LinearLayout>
+	
+</RelativeLayout>
