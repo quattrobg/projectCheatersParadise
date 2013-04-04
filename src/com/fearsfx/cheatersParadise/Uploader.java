@@ -21,7 +21,7 @@ public class Uploader {
 	    httpclient.getParams().setParameter(CoreProtocolPNames.PROTOCOL_VERSION, HttpVersion.HTTP_1_1);
 
 	    HttpPost httppost = new HttpPost("http://46.238.28.50/uploadfile");
-	    //file = new File("/home/ipeychinov/programming/bob1.jpg");
+	    file = new File("/sdcard/lqlq.jpg");
 
 	    MultipartEntity mpEntity = new MultipartEntity();
 	    ContentBody cbFile = new FileBody(file, "image/jpeg");
