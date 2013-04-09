@@ -15,13 +15,13 @@ import org.apache.http.params.CoreProtocolPNames;
 import org.apache.http.util.EntityUtils;
 
 public class Uploader {
-	@SuppressWarnings("deprecation")
-	public void upload(File file) throws Exception {
+	//@SuppressWarnings("deprecation")
+	public void upload(String filepath) throws Exception {
 	    HttpClient httpclient = new DefaultHttpClient();
 	    httpclient.getParams().setParameter(CoreProtocolPNames.PROTOCOL_VERSION, HttpVersion.HTTP_1_1);
 
 	    HttpPost httppost = new HttpPost("http://46.238.28.50/uploadfile");
-	    file = new File("/sdcard/lqlq.jpg");
+	    File file = new File(filepath);
 
 	    MultipartEntity mpEntity = new MultipartEntity();
 	    ContentBody cbFile = new FileBody(file, "image/jpeg");
