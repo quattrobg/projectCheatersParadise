@@ -13,13 +13,11 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
-	private static final int REQUEST_PICK_FILE = 1;
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		ImageView bg = (ImageView) findViewById(R.id.background);
+		ImageView bg = (ImageView) findViewById(R.id.background_main);
 		bg.setBackgroundResource(R.drawable.background);
 	}
 
@@ -28,8 +26,8 @@ public class MainActivity extends Activity {
 	}
 
 	public void post(View view) {
-		Intent intent = new Intent(this, PickFile.class);
-		startActivityForResult(intent, REQUEST_PICK_FILE);
+		Intent intent = new Intent(this, Post.class);
+		startActivity(intent);
 	}
 
 	public void request(View view) {
@@ -51,34 +49,6 @@ public class MainActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.activity_main, menu);
 		return true;
-	}
-
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode,
-			final Intent data) {
-		if (resultCode == RESULT_OK) {
-			switch (requestCode) {
-			case REQUEST_PICK_FILE:
-				Thread thread = new Thread() {
-
-					public void run() {
-						try {
-							if (data.hasExtra(PickFile.EXTRA_FILE_PATH)) {
-								// Get the file path
-								File f = new File(
-										data.getStringExtra(PickFile.EXTRA_FILE_PATH));
-
-								Uploader up = new Uploader();
-								up.upload(f.getPath());
-							}
-						} catch (Exception e) {
-							Log.e("Upload file Exception : ", e.getMessage());
-						}
-					}
-				};
-				thread.start();
-			}
-		}
 	}
 
 }
