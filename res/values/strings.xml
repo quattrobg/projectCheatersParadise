@@ -8,5 +8,7 @@
     <string name="title_activity_about">About</string>
     <string name="about_app">Some words about this app.. well the main idea is to help all ELSYS students to cheat on their exams.. photos or any kind of information can be shared or requested.. </string>
     <string name="app_rights" tools:ignore="TypographyDashes">Copyright© 2013-2013 FeaR-sFx and sh4r1ng4n4 ®, All Rights Reserved.</string>
+    <string name="title_activity_post">Post</string>
+    <string name="action_settings">Settings</string>
 
 </resources>

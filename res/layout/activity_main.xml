@@ -6,7 +6,7 @@
 	tools:ignore="ContentDescription" >
         
     <ImageView
-        android:id="@+id/background"
+        android:id="@+id/background_main"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" >
     </ImageView>    
