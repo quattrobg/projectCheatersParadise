@@ -13,10 +13,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-<<<<<<< HEAD
 import android.widget.Toast;
-=======
->>>>>>> 99e7ad6705c2bbe9a8cca109b9a05dda3611d960
 
 public class Post extends Activity {
 	
@@ -62,7 +59,6 @@ public class Post extends Activity {
 	}
 	
 	public void submit(View view) {
-<<<<<<< HEAD
 		if( keepIt != null ){
 			Thread thread = new Thread() {
 	
@@ -97,27 +93,6 @@ public class Post extends Activity {
 		} else {
 			Toast.makeText(this, "Choose file first -.-", Toast.LENGTH_SHORT).show();
 		}
-=======
-		Thread thread = new Thread() {
-
-			public void run() {
-				try {
-					if (keepIt.hasExtra(PickFile.EXTRA_FILE_PATH)) {
-						// Get the file path
-						File f = new File(keepIt.getStringExtra(PickFile.EXTRA_FILE_PATH));
-						EditText et = (EditText) findViewById(R.id.topic);
-
-						Uploader up = new Uploader();
-						up.upload(f.getPath(), new StringBody(et.getText().toString()) );
-					}
-				} catch (Exception e) {
-					Log.e("Upload file Exception : ", e.getMessage());
-				}
-			}
-		};
-		thread.start();
-		finish();
->>>>>>> 99e7ad6705c2bbe9a8cca109b9a05dda3611d960
 	}
 	
 }

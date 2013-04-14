@@ -5,10 +5,7 @@
     android:versionName="1.0" >
 
     <uses-permission android:name="android.permission.INTERNET" />
-<<<<<<< HEAD
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-=======
->>>>>>> 99e7ad6705c2bbe9a8cca109b9a05dda3611d960
 
     <uses-sdk
         android:minSdkVersion="8"
@@ -40,13 +37,10 @@
             android:name="com.fearsfx.cheatersParadise.Post"
             android:label="@string/title_activity_post" >
         </activity>
-<<<<<<< HEAD
         <activity
             android:name="com.fearsfx.cheatersParadise.Browse"
             android:label="@string/title_activity_browse" >
         </activity>
-=======
->>>>>>> 99e7ad6705c2bbe9a8cca109b9a05dda3611d960
     </application>
 
 </manifest>
