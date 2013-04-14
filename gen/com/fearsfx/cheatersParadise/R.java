@@ -77,10 +77,12 @@ public final class R {
     }
     public static final class layout {
         public static final int activity_about=0x7f030000;
-        public static final int activity_main=0x7f030001;
-        public static final int activity_nothing=0x7f030002;
-        public static final int activity_pick_file=0x7f030003;
-        public static final int activity_post=0x7f030004;
+        public static final int activity_browse=0x7f030001;
+        public static final int activity_insert_test=0x7f030002;
+        public static final int activity_main=0x7f030003;
+        public static final int activity_nothing=0x7f030004;
+        public static final int activity_pick_file=0x7f030005;
+        public static final int activity_post=0x7f030006;
     }
     public static final class menu {
         public static final int activity_about=0x7f080000;
@@ -88,7 +90,9 @@ public final class R {
         public static final int activity_maina_two=0x7f080002;
         public static final int activity_pick_file=0x7f080003;
         public static final int activity_play=0x7f080004;
-        public static final int post=0x7f080005;
+        public static final int browse=0x7f080005;
+        public static final int insert_test=0x7f080006;
+        public static final int post=0x7f080007;
     }
     public static final class string {
         public static final int about_app=0x7f060005;
@@ -98,6 +102,7 @@ public final class R {
         public static final int hello_world=0x7f060003;
         public static final int menu_settings=0x7f060001;
         public static final int title_activity_about=0x7f060004;
+        public static final int title_activity_browse=0x7f060009;
         public static final int title_activity_pick_file=0x7f060002;
         public static final int title_activity_post=0x7f060007;
     }
