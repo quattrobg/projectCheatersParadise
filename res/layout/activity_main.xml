@@ -1,0 +1,95 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context=".MainActivity"
+	tools:ignore="ContentDescription" >
+        
+    <ImageView
+        android:id="@+id/background_main"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+    </ImageView>    
+    
+    
+    <LinearLayout
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:padding="20dip"
+	    android:orientation="vertical" >
+	        
+		<LinearLayout
+		    android:id="@+id/browseLayout"
+		    android:layout_weight="0.15"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content" >
+
+		    <ImageView
+		        android:id="@+id/browse"
+		        android:layout_width="fill_parent"
+		        android:layout_height="fill_parent"
+		        android:clickable="true"
+		        android:onClick="browse"
+		        android:src="@drawable/but_browse" />
+
+	    </LinearLayout>
+
+		<LinearLayout
+		    android:id="@+id/postLayout"
+		    android:layout_weight="0.15"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content" >
+		    <ImageView
+		        android:id="@+id/post"
+		        android:layout_width="match_parent"
+		        android:layout_height="match_parent"
+		        android:src="@drawable/but_post"
+		        android:clickable="true"
+		        android:onClick="post" />
+	    </LinearLayout>
+	    
+		<LinearLayout
+		    android:id="@+id/requestLayout"
+		    android:layout_weight="0.15"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content" >
+		    <ImageView
+		        android:id="@+id/request"
+		        android:layout_width="match_parent"
+		        android:layout_height="match_parent"
+		        android:src="@drawable/but_request"
+		        android:clickable="true"
+		        android:onClick="request" />
+	    </LinearLayout>
+	    
+		<LinearLayout
+		    android:id="@+id/aboutLayout"
+		    android:layout_weight="0.15"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content" >
+		    <ImageView
+		        android:id="@+id/about"
+		        android:layout_width="match_parent"
+		        android:layout_height="match_parent"
+		        android:src="@drawable/but_about"
+		        android:clickable="true"
+		        android:onClick="about" />
+	    </LinearLayout>
+	    
+		<LinearLayout
+		    android:id="@+id/exitLayout"
+		    android:layout_weight="0.15"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content" >
+		    <ImageView
+		        android:id="@+id/exit"
+		        android:layout_width="match_parent"
+		        android:layout_height="match_parent"
+		        android:src="@drawable/but_exit"
+		        android:clickable="true"
+		        android:onClick="die" />
+	    </LinearLayout>
+	
+	</LinearLayout>
+	
+</RelativeLayout>
