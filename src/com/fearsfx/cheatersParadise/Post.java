@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Post extends Activity {
 	
@@ -58,25 +59,40 @@ public class Post extends Activity {
 	}
 	
 	public void submit(View view) {
-		Thread thread = new Thread() {
-
-			public void run() {
-				try {
-					if (keepIt.hasExtra(PickFile.EXTRA_FILE_PATH)) {
-						// Get the file path
-						File f = new File(keepIt.getStringExtra(PickFile.EXTRA_FILE_PATH));
-						EditText et = (EditText) findViewById(R.id.topic);
-
-						Uploader up = new Uploader();
-						up.upload(f.getPath(), new StringBody(et.getText().toString()) );
+		if( keepIt != null ){
+			Thread thread = new Thread() {
+	
+				public void run() {
+					try {
+						if (keepIt.hasExtra(PickFile.EXTRA_FILE_PATH)) {
+							// Get the file path
+							File f = new File(keepIt.getStringExtra(PickFile.EXTRA_FILE_PATH));
+							EditText et = (EditText) findViewById(R.id.topic);
+	
+/*							String imgOnly[] = f.getPath().split(".");
+							if (imgOnly[imgOnly.length - 1].equals("jpg")
+									|| imgOnly[imgOnly.length - 1].equals("png")
+									|| imgOnly[imgOnly.length - 1].equals("bmp")
+									|| imgOnly[imgOnly.length - 1].equals("gif")
+									|| imgOnly[imgOnly.length - 1].equals("jpeg")) {
+*/								
+								Uploader up = new Uploader();
+								up.upload(f.getPath(), new StringBody(et.getText().toString()));
+/*								
+							}else{
+								Toast.makeText(Post.this, "File not image or text", Toast.LENGTH_SHORT).show();
+							}
+*/						}
+					} catch (Exception e) {
+						Log.e("Upload file Exception : ", e.getMessage());
 					}
-				} catch (Exception e) {
-					Log.e("Upload file Exception : ", e.getMessage());
 				}
-			}
-		};
-		thread.start();
-		finish();
+			};
+			thread.start();
+			finish();
+		} else {
+			Toast.makeText(this, "Choose file first -.-", Toast.LENGTH_SHORT).show();
+		}
 	}
 	
 }

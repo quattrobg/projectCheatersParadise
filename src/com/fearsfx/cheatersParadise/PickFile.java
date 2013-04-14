@@ -191,7 +191,6 @@ public class PickFile extends ListActivity {
 	}
 	
 	private class FileComparator implements Comparator<File> {
-	    @Override
 	    public int compare(File f1, File f2) {
 	    	if(f1 == f2) {
 	    		return 0;
@@ -217,7 +216,6 @@ public class PickFile extends ListActivity {
 			mExtensions = extensions;
 		}
 		
-		@Override
 		public boolean accept(File dir, String filename) {
 			if(new File(dir, filename).isDirectory()) {
 				// Accept all directory names

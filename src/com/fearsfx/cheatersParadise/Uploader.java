@@ -15,15 +15,13 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.CoreProtocolPNames;
 import org.apache.http.util.EntityUtils;
 
-//uses Jakarta HttpClient library (http://hc.apache.org/downloads.cgi)
-
 public class Uploader {
 	@SuppressWarnings("deprecation")
 	public void upload(String filepath, StringBody topic) throws Exception {
 	    HttpClient httpclient = new DefaultHttpClient();
 	    httpclient.getParams().setParameter(CoreProtocolPNames.PROTOCOL_VERSION, HttpVersion.HTTP_1_1);
 
-	    HttpPost httppost = new HttpPost("http://46.238.28.50/uploadfile");
+	    HttpPost httppost = new HttpPost("http://46.238.28.50/upload.php");
 	    File file = new File(filepath);
 
 	    MultipartEntity mpEntity = new MultipartEntity();

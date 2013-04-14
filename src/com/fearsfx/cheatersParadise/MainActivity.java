@@ -22,7 +22,8 @@ public class MainActivity extends Activity {
 	}
 
 	public void browse(View view) {
-		Toast.makeText(MainActivity.this, "Not yet implemented", Toast.LENGTH_SHORT).show();
+		Intent intent = new Intent(this, Browse.class);
+		startActivity(intent);
 	}
 
 	public void post(View view) {
