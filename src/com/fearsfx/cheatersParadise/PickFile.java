@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import android.annotation.SuppressLint;
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
@@ -20,25 +21,11 @@ import android.widget.TextView;
 
 public class PickFile extends ListActivity {
 	
-	/**
-	 * The file path
-	 */
 	public final static String EXTRA_FILE_PATH = "file_path";
-	
-	/**
-	 * Sets whether hidden files should be visible in the list or not
-	 */
 	public final static String EXTRA_SHOW_HIDDEN_FILES = "show_hidden_files";
-
-	/**
-	 * The allowed file extensions in an ArrayList of Strings
-	 */
 	public final static String EXTRA_ACCEPTED_FILE_EXTENSIONS = "accepted_file_extensions";
-	
-	/**
-	 * The initial directory which will be used if no directory has been sent with the intent 
-	 */
-	private final static String DEFAULT_INITIAL_DIRECTORY = "/";
+	@SuppressLint("SdCardPath")
+	private final static String DEFAULT_INITIAL_DIRECTORY = "/sdcard/";
 	
 	protected File mDirectory;
 	protected ArrayList<File> mFiles;
@@ -50,26 +37,20 @@ public class PickFile extends ListActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		// Set the view to be shown if the list is empty
 		LayoutInflater inflator = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View emptyView = inflator.inflate(R.layout.activity_nothing, null);
 		((ViewGroup)getListView().getParent()).addView(emptyView);
 		getListView().setEmptyView(emptyView);
 		
-		// Set initial directory
 		mDirectory = new File(DEFAULT_INITIAL_DIRECTORY);
 		
-		// Initialize the ArrayList
 		mFiles = new ArrayList<File>();
 		
-		// Set the ListAdapter
 		mAdapter = new FilePickerListAdapter(this, mFiles);
 		setListAdapter(mAdapter);
 		
-		// Initialize the extensions array to allow any file extensions
 		acceptedFileExtensions = new String[] {};
 		
-		// Get intent extras
 		if(getIntent().hasExtra(EXTRA_FILE_PATH)) {
 			mDirectory = new File(getIntent().getStringExtra(EXTRA_FILE_PATH));
 		}
@@ -88,26 +69,16 @@ public class PickFile extends ListActivity {
 		super.onResume();
 	}
 	
-	/**
-	 * Updates the list view to the current directory
-	 */
 	protected void refreshFilesList() {
-		// Clear the files ArrayList
 		mFiles.clear();
-		
-		// Set the extension file filter
 		ExtensionFilenameFilter filter = new ExtensionFilenameFilter(acceptedFileExtensions);
 		
-		// Get the files in the directory
 		File[] files = mDirectory.listFiles(filter);
 		if(files != null && files.length > 0) {
 			for(File f : files) {
 				if(f.isHidden() && !mShowHiddenFiles) {
-					// Don't add the file
 					continue;
 				}
-				
-				// Add the file the ArrayAdapter
 				mFiles.add(f);
 			}
 			
@@ -119,37 +90,36 @@ public class PickFile extends ListActivity {
 	@Override
 	public void onBackPressed() {
 		if(mDirectory.getParentFile() != null) {
-			// Go to parent directory
 			mDirectory = mDirectory.getParentFile();
 			refreshFilesList();
 			return;
 		}
-		
 		super.onBackPressed();
 	}
-	
+
+	@Override
+	public void onDestroy() {
+		finish();
+		super.onDestroy();
+	}
+
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		File newFile = (File)l.getItemAtPosition(position);
 		
 		if(newFile.isFile()) {
-			// Set result
 			Intent extra = new Intent();
 			extra.putExtra(EXTRA_FILE_PATH, newFile.getAbsolutePath());
 			setResult(RESULT_OK, extra);
-			// Finish the activity
 			finish();
 		} else {
 			mDirectory = newFile;
-			// Update the files list
 			refreshFilesList();
 		}
-		
 		super.onListItemClick(l, v, position, id);
 	}
 	
 	private class FilePickerListAdapter extends ArrayAdapter<File> {
-		
 		private List<File> mObjects;
 		
 		public FilePickerListAdapter(Context context, List<File> objects) {
@@ -159,7 +129,6 @@ public class PickFile extends ListActivity {
 		
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
-			
 			View row = null;
 			
 			if(convertView == null) { 
@@ -173,18 +142,14 @@ public class PickFile extends ListActivity {
 
 			ImageView imageView = (ImageView)row.findViewById(R.id.file_picker_image);
 			TextView textView = (TextView)row.findViewById(R.id.file_picker_text);
-			// Set single line
 			textView.setSingleLine(true);
 			
 			textView.setText(object.getName());
 			if(object.isFile()) {
-				// Show the file icon
 				imageView.setImageResource(R.drawable.file);
 			} else {
-				// Show the folder icon
 				imageView.setImageResource(R.drawable.folder);
 			}
-			
 			return row;
 		}
 
@@ -196,15 +161,12 @@ public class PickFile extends ListActivity {
 	    		return 0;
 	    	}
 	    	if(f1.isDirectory() && f2.isFile()) {
-	        	// Show directories above files
 	        	return -1;
 	        }
 	    	if(f1.isFile() && f2.isDirectory()) {
-	        	// Show files below directories
 	        	return 1;
 	        }
-	    	// Sort the directories alphabetically
-	        return f1.getName().compareToIgnoreCase(f2.getName());
+	    	return f1.getName().compareToIgnoreCase(f2.getName());
 	    }
 	}
 	
@@ -218,20 +180,16 @@ public class PickFile extends ListActivity {
 		
 		public boolean accept(File dir, String filename) {
 			if(new File(dir, filename).isDirectory()) {
-				// Accept all directory names
 				return true;
 			}
 			if(mExtensions != null && mExtensions.length > 0) {
 				for(int i = 0; i < mExtensions.length; i++) {
 					if(filename.endsWith(mExtensions[i])) {
-						// The filename ends with the extension
 						return true;
 					}
 				}
-				// The filename did not match any of the extensions
 				return false;
 			}
-			// No extensions has been set. Accept all file extensions.
 			return true;
 		}
 	}

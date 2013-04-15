@@ -39,59 +39,71 @@ public class Post extends Activity {
 		Intent intent = new Intent(this, PickFile.class);
 		startActivityForResult(intent, REQUEST_PICK_FILE);
 	}
+	
+	@Override
+	public void onDestroy() {
+		finish();
+		super.onDestroy();
+	}
 
+	boolean rightFormat = false;
 	protected void onActivityResult(int requestCode, int resultCode, final Intent data) {
 		if (resultCode == RESULT_OK) {
 			switch (requestCode) {
 			case REQUEST_PICK_FILE:
 
 				if (data.hasExtra(PickFile.EXTRA_FILE_PATH)) {
-					// Get the file path
 					File f = new File(data.getStringExtra(PickFile.EXTRA_FILE_PATH));
 
-					TextView tv = (TextView) findViewById(R.id.fileName);
-					tv.setText(f.getName());
-					keepIt = data;
+					String imgOnly = f.getPath().substring(f.getPath().lastIndexOf('.'));
+					System.out.println(imgOnly);
+					
+					if (imgOnly.equals(".jpg")
+							|| imgOnly.equals(".png")
+							|| imgOnly.equals(".bmp")
+							|| imgOnly.equals(".gif")
+							|| imgOnly.equals(".jpeg")
+							|| imgOnly.equals(".txt")
+							|| imgOnly.equals(".doc")
+							|| imgOnly.equals(".docx")) {
+						
+						rightFormat = true;
+						TextView tv = (TextView) findViewById(R.id.fileName);
+						tv.setText(f.getName());
+						keepIt = data;
+					}else{
+						Toast.makeText(Post.this, "File not image or text", Toast.LENGTH_SHORT).show();
+					}
 				}
 				break;
 			}
 		}
 	}
-	
+
 	public void submit(View view) {
-		if( keepIt != null ){
+		final EditText et = (EditText) findViewById(R.id.topic);
+		
+		if( keepIt != null && !et.getText().toString().equals("")){
 			Thread thread = new Thread() {
 	
 				public void run() {
 					try {
 						if (keepIt.hasExtra(PickFile.EXTRA_FILE_PATH)) {
-							// Get the file path
 							File f = new File(keepIt.getStringExtra(PickFile.EXTRA_FILE_PATH));
-							EditText et = (EditText) findViewById(R.id.topic);
-	
-/*							String imgOnly[] = f.getPath().split(".");
-							if (imgOnly[imgOnly.length - 1].equals("jpg")
-									|| imgOnly[imgOnly.length - 1].equals("png")
-									|| imgOnly[imgOnly.length - 1].equals("bmp")
-									|| imgOnly[imgOnly.length - 1].equals("gif")
-									|| imgOnly[imgOnly.length - 1].equals("jpeg")) {
-*/								
-								Uploader up = new Uploader();
-								up.upload(f.getPath(), new StringBody(et.getText().toString()));
-/*								
-							}else{
-								Toast.makeText(Post.this, "File not image or text", Toast.LENGTH_SHORT).show();
-							}
-*/						}
+							
+							Uploader up = new Uploader();
+							up.upload(f.getPath(), new StringBody(et.getText().toString()));
+						}
 					} catch (Exception e) {
 						Log.e("Upload file Exception : ", e.getMessage());
 					}
 				}
 			};
 			thread.start();
+			Toast.makeText(Post.this, "Upload Completed..", Toast.LENGTH_SHORT).show();
 			finish();
 		} else {
-			Toast.makeText(this, "Choose file first -.-", Toast.LENGTH_SHORT).show();
+			Toast.makeText(Post.this, "Topic must be entered and only img/text file could be chosen.. ", Toast.LENGTH_SHORT).show();
 		}
 	}
 	

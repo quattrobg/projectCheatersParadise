@@ -16,7 +16,6 @@ import org.apache.http.params.CoreProtocolPNames;
 import org.apache.http.util.EntityUtils;
 
 public class Uploader {
-	@SuppressWarnings("deprecation")
 	public void upload(String filepath, StringBody topic) throws Exception {
 	    HttpClient httpclient = new DefaultHttpClient();
 	    httpclient.getParams().setParameter(CoreProtocolPNames.PROTOCOL_VERSION, HttpVersion.HTTP_1_1);

@@ -41,6 +41,10 @@
             android:name="com.fearsfx.cheatersParadise.Browse"
             android:label="@string/title_activity_browse" >
         </activity>
+        <activity
+            android:name="com.fearsfx.cheatersParadise.Previewer"
+            android:label="@string/title_activity_previewer" >
+        </activity>
     </application>
 
 </manifest>
