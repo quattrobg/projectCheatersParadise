@@ -8,7 +8,9 @@
     <ImageView
         android:id="@+id/background_post"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
+        android:layout_height="fill_parent"
+        tools:ignore="ContentDescription" >
+
     </ImageView>    
     
     <LinearLayout
@@ -18,21 +20,23 @@
 	    android:orientation="vertical" >
 	        
 	    <EditText
-	        android:layout_weight="0.15"
 	        android:id="@+id/topic"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
-	        android:text="Topic"
-	        android:gravity="center" />
+	        android:layout_weight="0.15"
+	        android:gravity="center"
+	        android:hint="Enter post topic.."
+	        tools:ignore="HardcodedText" />
 	    
 	    <TextView
-	        android:layout_weight="0.15"
 	        android:id="@+id/fileName"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
-	        android:text="No file chosen yet"
+	        android:layout_weight="0.15"
 	        android:gravity="center"
-	        android:textColor="@color/white" />
+	        android:text="No file chosen yet"
+	        android:textColor="@color/white"
+	        tools:ignore="HardcodedText" />
 	    
 	    <LinearLayout
 		    android:id="@+id/chooseFileLayout"
@@ -46,7 +50,8 @@
 		        android:layout_height="fill_parent"
 		        android:clickable="true"
 		        android:onClick="pickFile"
-		        android:src="@drawable/but_choose_file" />
+		        android:src="@drawable/but_choose_file"
+		        tools:ignore="ContentDescription" />
 
 	    </LinearLayout>
 	    
@@ -62,14 +67,16 @@
 		        android:layout_height="fill_parent"
 		        android:clickable="true"
 		        android:onClick="submit"
-		        android:src="@drawable/but_submit" />
+		        android:src="@drawable/but_submit"
+		        tools:ignore="ContentDescription" />
 
 	    </LinearLayout>
 	    
-	    <LinearLayout 
-		    android:layout_weight="0.4"
-		    android:layout_width="match_parent"
-		    android:layout_height="wrap_content" >
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="0.4"
+	        tools:ignore="UselessLeaf" >
 	        
 	    </LinearLayout>
 	    
