@@ -1,8 +1,10 @@
 package com.fearsfx.cheatersParadise;
 
-import android.os.Bundle;
 import android.app.Activity;
+import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.Menu;
+import android.widget.TextView;
 
 public class About extends Activity {
 
@@ -10,12 +12,14 @@ public class About extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
+        
+        TextView tv = (TextView) findViewById(R.id.about);
+        tv.setMovementMethod(new ScrollingMovementMethod());
     }
 
     @Override
 	protected void onDestroy() {
-		// TODO Auto-generated method stub
-    	finish();
+		finish();
 		super.onDestroy();
 	}
     
